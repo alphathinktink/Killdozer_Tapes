@@ -149,7 +149,7 @@ def page_url(filename: str) -> str:
 
 
 def render_manifest_path(path: str) -> str:
-    if path.startswith("Not published"):
+    if path.startswith(("Linked", "Not published")):
         return f"<span class=\"unpublished-artifact\">{html.escape(path)}</span>"
     return f"<a href=\"{page_url(path)}\">{html.escape(path)}</a>"
 
@@ -385,7 +385,7 @@ def render_provenance_page(catalog: list[dict]) -> str:
         ("Buzz conversion screenshot", "Buzz conversion screenshot.png", "Screenshot retained as evidence of the Buzz conversion workflow."),
         ("QA timestamp report", "Transcription_QA_Timestamp_Sample_Report.txt", "Timestamped list of suspected Whisper/Buzz transcript issues, resolved items, and sample positions."),
         ("Codex change report", "Codex_Change_Report_2026-07-13.txt", "Best-effort report of Codex-assisted replacements and review recommendations."),
-        ("Original transcription backups", "Original Transcriptions Backup/", "Backup copies of earlier transcript files before later cleanup passes."),
+        ("Original transcription backups", "Linked individually below", "Backup copies of earlier transcript files before later cleanup passes."),
         ("44.1 kHz / 16-bit WAV transcodes", "Not published in repository", "WAV transcodes were generated for local waveform review and sample-count referencing, but are intentionally omitted from the public GitHub Pages repository because of file size."),
         ("Machine catalog", "data/catalog.json", "Machine-readable SPA catalog with transcript text, cue timing, and provenance metadata."),
         ("LLM guidance", "llms.txt", "Plain text guidance for AI assistants and scrapers."),
@@ -434,7 +434,7 @@ def render_provenance_page(catalog: list[dict]) -> str:
         <li>Source MP3 recordings were gathered for seven tape sides. Tape 1 Side B also has a fast-forward-corrected audio file that is used as the primary web playback source.</li>
         <li>Audio was transcoded locally to 44.1 kHz / 16-bit WAV files for waveform review and sample-count references. Those generated WAV files are documented in the machine catalog but intentionally not published in this GitHub repository because of file size.</li>
         <li>Initial transcript outputs were generated with Buzz using Whisper Large-v3, producing TXT, SRT, and VTT transcript files.</li>
-        <li>Original transcript copies were preserved in <a href="Original%20Transcriptions%20Backup/">Original Transcriptions Backup/</a> before later correction passes.</li>
+        <li>Original transcript copies were preserved before later correction passes. The available backup TXT files are linked individually in the transcript file map below.</li>
         <li>A first QA pass identified obvious Whisper/Buzz failure modes, including prompt leaks, hallucinated text, mojibake/non-English garbage, duplicate captions, overrun after audio ended, and suspicious names or terms.</li>
         <li>Some segments were manually ear-checked in audio tools such as GoldWave or Audacity. The QA report records timestamp ranges, sample counts, and resolution notes where available.</li>
         <li>Codex/ChatGPT was used as an editing assistant for limited cleanup, consistency checks, report generation, and archive-site generation. The Codex change report lists later replacement-style edits and explicitly marks several as questionable without ear-checking.</li>
