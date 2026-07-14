@@ -21,6 +21,10 @@ def main() -> None:
     for path in [
         ROOT / "index.html",
         ROOT / "provenance.html",
+        ROOT / "analysis" / "index.html",
+        ROOT / "analysis" / "timeline.html",
+        ROOT / "analysis" / "grievances.html",
+        ROOT / "analysis" / "persons-entities.html",
         ROOT / "Original Transcriptions Backup" / "index.html",
         *sorted((ROOT / "transcripts").glob("*.html")),
     ]:

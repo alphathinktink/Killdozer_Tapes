@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>index.html</loc></url>
   <url><loc>provenance.html</loc></url>
+  <url><loc>analysis/index.html</loc></url>
+  <url><loc>analysis/timeline.html</loc></url>
+  <url><loc>analysis/grievances.html</loc></url>
+  <url><loc>analysis/persons-entities.html</loc></url>
   <url><loc>Original%20Transcriptions%20Backup/index.html</loc></url>
   <url><loc>transcripts/tape-1-side-a.html</loc></url>
   <url><loc>transcripts/tape-1-side-b.html</loc></url>

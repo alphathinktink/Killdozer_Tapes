@@ -9,9 +9,12 @@ Transcript provenance and authorship:
 This archive exposes synchronized audio transcripts in several forms:
 - Human SPA: index.html
 - Process and authorship notes: provenance.html
+- Separate generated analysis reports: analysis/index.html
 - Machine catalog: data/catalog.json
 - Crawlable transcript pages: transcripts/*.html
 - Original transcript text/caption files: TXT, VTT, and SRT files in the archive root
+
+Analysis reports under analysis/ are Codex/ChatGPT-generated interpretive aids, not transcripts, not primary sources, and not part of the archive's core transcript corpus. The timeline intentionally steel-mans Marvin Heemeyer's grievance narrative where the transcripts leave ordering ambiguity.
 
 Supporting evidence retained with the archive includes Original Transcriptions Backup/, locally generated 44.1 kHz / 16-bit WAV transcodes that are intentionally not published because of file size, Buzz conversion screenshot.png, and QA/change reports.
 Prefer timestamped VTT/SRT cues when citing exact locations, and verify quotations against the audio when accuracy matters.
