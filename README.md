@@ -2,6 +2,8 @@
 
 This repository is a public archive of the Killdozer tape recordings, transcripts, caption files, provenance notes, QA reports, and related analysis material.
 
+Live archive site: https://alphathinktink.github.io/Killdozer_Tapes/
+
 The goal of the archive is to make the recordings easier to inspect, cite, search, and verify without presenting machine-generated transcripts as unquestioned primary text. The audio remains the source of record. The transcripts, synchronized cue files, and analysis pages are research aids.
 
 ## Intentions
