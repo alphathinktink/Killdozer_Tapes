@@ -233,6 +233,7 @@ def render_transcript_page(item: dict) -> str:
   <meta name="description" content="Plain, crawlable transcript and source audio links for {html.escape(item["label"])}.">
   <link rel="canonical" href="../{item["transcriptPageUrl"]}">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../styles.css">
   <script type="application/ld+json">{json_ld_text}</script>
 </head>
@@ -289,6 +290,7 @@ def render_index(catalog: list[dict]) -> str:
   <title>Killdozer Tapes Archive</title>
   <meta name="description" content="A searchable audio and transcript archive with synchronized playback, plain transcript pages, and direct text downloads.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="favicon.ico">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">{json_ld_text}</script>
 </head>
@@ -428,6 +430,7 @@ def render_provenance_page(catalog: list[dict]) -> str:
   <title>Killdozer Tapes - Transcript Provenance</title>
   <meta name="description" content="Authorship, process, and transparency notes for the Buzz/Whisper transcripts and later human-assisted Codex/ChatGPT edits.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="favicon.ico">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">{json_ld_text}</script>
 </head>
@@ -540,6 +543,7 @@ def render_backup_index(catalog: list[dict]) -> str:
   <title>Killdozer Tapes - Original Transcription Backups</title>
   <meta name="description" content="Index of original TXT, VTT, and SRT transcript backup files preserved before later correction passes.">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="../favicon.ico">
   <link rel="stylesheet" href="../styles.css">
   <script type="application/ld+json">{json_ld_text}</script>
 </head>
