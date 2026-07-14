@@ -262,10 +262,12 @@ def render_transcript_page(item: dict) -> str:
 
 
 def render_index(catalog: list[dict]) -> str:
+    source_repo = "https://github.com/alphathinktink/Killdozer_Tapes"
     json_ld = {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         "name": "Killdozer Tapes Archive",
+        "isBasedOn": source_repo,
         "hasPart": [
             {
                 "@type": "AudioObject",
@@ -306,6 +308,7 @@ def render_index(catalog: list[dict]) -> str:
         <div class="resource-row mast-links">
           <a href="provenance.html">Process and authorship</a>
           <a href="analysis/index.html">Separate analysis reports</a>
+          <a href="{source_repo}">Source repository</a>
           <a href="Codex_Change_Report_2026-07-13.txt">Codex change report</a>
           <a href="Transcription_QA_Timestamp_Sample_Report.txt">QA timestamp report</a>
         </div>
