@@ -18,7 +18,12 @@ def main() -> None:
         if not item["cues"]:
             raise AssertionError(f"{item['id']} has no timestamp cues")
 
-    for path in [ROOT / "index.html", ROOT / "provenance.html", *sorted((ROOT / "transcripts").glob("*.html"))]:
+    for path in [
+        ROOT / "index.html",
+        ROOT / "provenance.html",
+        ROOT / "Original Transcriptions Backup" / "index.html",
+        *sorted((ROOT / "transcripts").glob("*.html")),
+    ]:
         text = path.read_text(encoding="utf-8")
         blocks = re.findall(r'<script type="application/ld\+json">(.*?)</script>', text, re.S)
         if not blocks:

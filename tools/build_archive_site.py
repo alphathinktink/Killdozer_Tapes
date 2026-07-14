@@ -11,6 +11,7 @@ from urllib.parse import quote
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "data"
 TRANSCRIPT_DIR = ROOT / "transcripts"
+BACKUP_DIR = ROOT / "Original Transcriptions Backup"
 
 
 RECORDINGS = [
@@ -149,7 +150,7 @@ def page_url(filename: str) -> str:
 
 
 def render_manifest_path(path: str) -> str:
-    if path.startswith(("Linked", "Not published")):
+    if path.startswith("Not published"):
         return f"<span class=\"unpublished-artifact\">{html.escape(path)}</span>"
     return f"<a href=\"{page_url(path)}\">{html.escape(path)}</a>"
 
@@ -378,14 +379,14 @@ def render_index(catalog: list[dict]) -> str:
 def render_provenance_page(catalog: list[dict]) -> str:
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
     transcript_rows = "\n".join(
-        f"<tr><td>{html.escape(item['label'])}</td><td><a href=\"{item['txtUrl']}\">TXT</a></td><td><a href=\"{item['vttUrl']}\">VTT</a></td><td><a href=\"{item['srtUrl']}\">SRT</a></td><td><a href=\"Original%20Transcriptions%20Backup/{page_url(item['txt'])}\">backup TXT</a></td></tr>"
+        f"<tr><td>{html.escape(item['label'])}</td><td><a href=\"{item['txtUrl']}\">TXT</a></td><td><a href=\"{item['vttUrl']}\">VTT</a></td><td><a href=\"{item['srtUrl']}\">SRT</a></td><td><a href=\"Original%20Transcriptions%20Backup/index.html#{item['id']}\">backup files</a></td></tr>"
         for item in catalog
     )
     file_manifest = [
         ("Buzz conversion screenshot", "Buzz conversion screenshot.png", "Screenshot retained as evidence of the Buzz conversion workflow."),
         ("QA timestamp report", "Transcription_QA_Timestamp_Sample_Report.txt", "Timestamped list of suspected Whisper/Buzz transcript issues, resolved items, and sample positions."),
         ("Codex change report", "Codex_Change_Report_2026-07-13.txt", "Best-effort report of Codex-assisted replacements and review recommendations."),
-        ("Original transcription backups", "Linked individually below", "Backup copies of earlier transcript files before later cleanup passes."),
+        ("Original transcription backups", "Original Transcriptions Backup/index.html", "Backup copies of earlier transcript files before later cleanup passes."),
         ("44.1 kHz / 16-bit WAV transcodes", "Not published in repository", "WAV transcodes were generated for local waveform review and sample-count referencing, but are intentionally omitted from the public GitHub Pages repository because of file size."),
         ("Machine catalog", "data/catalog.json", "Machine-readable SPA catalog with transcript text, cue timing, and provenance metadata."),
         ("LLM guidance", "llms.txt", "Plain text guidance for AI assistants and scrapers."),
@@ -434,7 +435,7 @@ def render_provenance_page(catalog: list[dict]) -> str:
         <li>Source MP3 recordings were gathered for seven tape sides. Tape 1 Side B also has a fast-forward-corrected audio file that is used as the primary web playback source.</li>
         <li>Audio was transcoded locally to 44.1 kHz / 16-bit WAV files for waveform review and sample-count references. Those generated WAV files are documented in the machine catalog but intentionally not published in this GitHub repository because of file size.</li>
         <li>Initial transcript outputs were generated with Buzz using Whisper Large-v3, producing TXT, SRT, and VTT transcript files.</li>
-        <li>Original transcript copies were preserved before later correction passes. The available backup TXT files are linked individually in the transcript file map below.</li>
+        <li>Original transcript copies were preserved before later correction passes. The backup index lists the TXT, VTT, and SRT files retained in <a href="Original%20Transcriptions%20Backup/index.html">Original Transcriptions Backup/</a>.</li>
         <li>A first QA pass identified obvious Whisper/Buzz failure modes, including prompt leaks, hallucinated text, mojibake/non-English garbage, duplicate captions, overrun after audio ended, and suspicious names or terms.</li>
         <li>Some segments were manually ear-checked in audio tools such as GoldWave or Audacity. The QA report records timestamp ranges, sample counts, and resolution notes where available.</li>
         <li>Codex/ChatGPT was used as an editing assistant for limited cleanup, consistency checks, report generation, and archive-site generation. The Codex change report lists later replacement-style edits and explicitly marks several as questionable without ear-checking.</li>
@@ -481,6 +482,70 @@ def render_provenance_page(catalog: list[dict]) -> str:
     <section>
       <h2>Machine-Readable Access</h2>
       <p>AI assistants, crawlers, and scrapers can read <a href="data/catalog.json">data/catalog.json</a>, <a href="llms.txt">llms.txt</a>, and the standalone transcript pages under <a href="transcripts/">transcripts/</a>. Those surfaces include provenance language so downstream users can see that the transcripts originated from automatic speech recognition.</p>
+    </section>
+  </main>
+</body>
+</html>
+"""
+
+
+def backup_file_link(filename: str, label: str) -> str:
+    return f'<a href="{page_url(filename)}">{html.escape(label)}</a>'
+
+
+def render_backup_index(catalog: list[dict]) -> str:
+    generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    rows = "\n".join(
+        f"""<tr id="{item['id']}">
+  <td>{html.escape(item['label'])}</td>
+  <td>{backup_file_link(item['txt'], 'TXT')}</td>
+  <td>{backup_file_link(item['vtt'], 'VTT')}</td>
+  <td>{backup_file_link(item['srt'], 'SRT')}</td>
+</tr>"""
+        for item in catalog
+    )
+    report_link = backup_file_link("Transcription_QA_Timestamp_Sample_Report.txt", "Transcription_QA_Timestamp_Sample_Report.txt")
+    json_ld = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Killdozer Tapes Original Transcription Backups",
+        "dateModified": generated_at,
+        "about": "Index of original transcript backup TXT, VTT, and SRT files preserved before later correction passes.",
+        "isPartOf": "Killdozer Tapes Archive",
+    }
+    json_ld_text = json.dumps(json_ld, ensure_ascii=False).replace("</", "<\\/")
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Killdozer Tapes - Original Transcription Backups</title>
+  <meta name="description" content="Index of original TXT, VTT, and SRT transcript backup files preserved before later correction passes.">
+  <link rel="stylesheet" href="../styles.css">
+  <script type="application/ld+json">{json_ld_text}</script>
+</head>
+<body class="transcript-page">
+  <main class="transcript-document provenance-document">
+    <nav class="crumbs"><a href="../index.html">Archive index</a> / <a href="../provenance.html">Transcript provenance</a></nav>
+    <header>
+      <p class="eyebrow">Preserved source files</p>
+      <h1>Original Transcription Backups</h1>
+      <p class="lede">These files are backup copies of the original Buzz / Whisper transcript outputs preserved before later correction and cleanup passes. They are retained for transparency and comparison, not presented as final verified transcripts.</p>
+    </header>
+
+    <section>
+      <h2>Backup File Map</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Recording</th><th>Plain text</th><th>VTT captions</th><th>SRT captions</th></tr></thead>
+          <tbody>{rows}</tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Backup QA Report</h2>
+      <p>{report_link}</p>
     </section>
   </main>
 </body>
@@ -1220,15 +1285,17 @@ th {
 def main() -> None:
     DATA_DIR.mkdir(exist_ok=True)
     TRANSCRIPT_DIR.mkdir(exist_ok=True)
+    BACKUP_DIR.mkdir(exist_ok=True)
     catalog = build_catalog()
     (DATA_DIR / "catalog.json").write_text(json.dumps(catalog, ensure_ascii=False, indent=2), encoding="utf-8")
     (ROOT / "index.html").write_text(render_index(catalog), encoding="utf-8")
     (ROOT / "provenance.html").write_text(render_provenance_page(catalog), encoding="utf-8")
+    (BACKUP_DIR / "index.html").write_text(render_backup_index(catalog), encoding="utf-8")
     (ROOT / "app.js").write_text(render_app_js(), encoding="utf-8")
     (ROOT / "styles.css").write_text(render_css(), encoding="utf-8")
     for item in catalog:
         (TRANSCRIPT_DIR / f"{item['id']}.html").write_text(render_transcript_page(item), encoding="utf-8")
-    sitemap_entries = ["index.html", "provenance.html", *[item["transcriptPage"] for item in catalog]]
+    sitemap_entries = ["index.html", "provenance.html", "Original Transcriptions Backup/index.html", *[item["transcriptPage"] for item in catalog]]
     (ROOT / "sitemap.xml").write_text(
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
         "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n"
