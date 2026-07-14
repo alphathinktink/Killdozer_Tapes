@@ -1,0 +1,261 @@
+Killdozer Tapes - Codex Change Report
+Generated: 2026-07-13
+
+Purpose
+This report lists the transcript edits I made during the "re-analyze all updated transcript files" pass, so they can be reviewed and either accepted, clarified, or rolled back.
+
+Important caveat
+There is no git history or pre-edit snapshot in this folder for the exact manually corrected state immediately before my edits. The report below is based on:
+- the exact replacement rules I applied,
+- the terminal output captured during the pass,
+- current searches of the edited files.
+
+Because of that, the "affected files" lists are best-effort and should be treated as the review map. The before/after replacement text is exact.
+
+Files modified
+- 1-Tape_1_Side_A (transcribed on 07-Jul-2026 17-19-36).srt
+- 1-Tape_1_Side_A (transcribed on 07-Jul-2026 17-19-37).txt
+- 1-Tape_1_Side_A (transcribed on 07-Jul-2026 17-19-37).vtt
+- 2-Tape_1_Side_B (transcribed on 07-Jul-2026 19-39-22).srt
+- 2-Tape_1_Side_B (transcribed on 07-Jul-2026 19-39-22).txt
+- 2-Tape_1_Side_B (transcribed on 07-Jul-2026 19-39-22).vtt
+- 3-Tape_2_Side_A (transcribed on 07-Jul-2026 22-08-52).txt
+- 4-Tape_2_Side_B (transcribed on 07-Jul-2026 23-33-02).srt
+- 4-Tape_2_Side_B (transcribed on 07-Jul-2026 23-33-02).txt
+- 4-Tape_2_Side_B (transcribed on 07-Jul-2026 23-33-02).vtt
+- 6-Tape_3_Side_B (transcribed on 08-Jul-2026 01-17-54).srt
+- 6-Tape_3_Side_B (transcribed on 08-Jul-2026 01-17-54).txt
+- 6-Tape_3_Side_B (transcribed on 08-Jul-2026 01-17-54).vtt
+- 7-Tape_4_Side_A (transcribed on 08-Jul-2026 02-13-02).srt
+- 7-Tape_4_Side_A (transcribed on 08-Jul-2026 02-13-02).txt
+- 7-Tape_4_Side_A (transcribed on 08-Jul-2026 02-13-02).vtt
+
+Note: Tape 3 Side A .srt/.vtt were inspected but not modified by my later correction pass; only the .txt rollup was modified for that tape.
+
+Change details
+
+1. Unintelligible marker spelling
+Before: [Unintelligable]
+After:  [Unintelligible]
+Affected files:
+- 6-Tape_3_Side_B .txt/.srt/.vtt
+My rationale at the time: spelling consistency with other bracketed uncertainty markers.
+Review recommendation: likely safe, but confirm if you intentionally used the misspelled form.
+
+2. Hot Sulphur Springs place name
+Before: Hot Sulfer Springs
+After:  Hot Sulphur Springs
+Affected files:
+- 6-Tape_3_Side_B .txt/.srt/.vtt
+My rationale at the time: Colorado place name is "Hot Sulphur Springs."
+Review recommendation: questionable without ear-checking. This normalizes to the place name, but it may obscure exactly what was spoken or what you intentionally typed.
+
+3. Hot Sulphur Springs place name
+Before: Hot Soffer Springs
+After:  Hot Sulphur Springs
+Affected files:
+- 1-Tape_1_Side_A .txt/.srt/.vtt, based on current occurrences
+My rationale at the time: same place-name normalization.
+Review recommendation: questionable without ear-checking. Consider rolling back if "Soffer" was a deliberate phonetic transcription.
+
+4. Granby place name
+Before: Grand Beach
+After:  Granby
+Affected files:
+- 1-Tape_1_Side_A .txt/.srt/.vtt, based on current occurrences around Peter Colley / water district references
+My rationale at the time: context repeatedly concerns Granby, Colorado; "Grand Beach" looked like an ASR error.
+Review recommendation: questionable without ear-checking. Likely right in context, but it is a content normalization.
+
+5. Tape 4 opening typo
+Before: it;s effective
+After:  it's effective
+Affected files:
+- 4-Tape_2_Side_B .txt/.srt/.vtt
+My rationale at the time: obvious punctuation typo.
+Review recommendation: likely safe.
+
+6. Tape 4 typo
+Before: propspering
+After:  prospering
+Affected files:
+- 4-Tape_2_Side_B .txt/.srt/.vtt
+My rationale at the time: obvious spelling typo.
+Review recommendation: likely safe if the intended word is "prospering"; otherwise rollback.
+
+7. Tape 4 punctuation
+Before: thats whats in the Subaru
+After:  that's what's in the Subaru
+Affected files:
+- Possibly any transcript file with that exact unpunctuated phrase; current confirmed location is 4-Tape_2_Side_B .txt/.srt/.vtt
+My rationale at the time: contraction punctuation.
+Review recommendation: safe only if you want normalized punctuation. If transcript style preserves raw/no-apostrophe wording, roll back.
+
+8. Tape 4 punctuation
+Before: that's whats in the Subaru
+After:  that's what's in the Subaru
+Affected files:
+- 4-Tape_2_Side_B .txt/.srt/.vtt, based on current location
+My rationale at the time: contraction punctuation.
+Review recommendation: safe only if you want normalized punctuation.
+
+9. Tape 4 wording/typo
+Before: This effected - me
+After:  This affected me
+Affected files:
+- 4-Tape_2_Side_B .txt/.srt/.vtt
+My rationale at the time: grammar/spelling typo.
+Review recommendation: questionable for verbatim transcription. The original dash/framing may have represented speech cadence.
+
+10. Dietze name
+Before: sent them down to, uh, Ditsa
+After:  sent them down to, uh, Dietze
+Affected files:
+- 2-Tape_1_Side_B .txt/.srt/.vtt
+My rationale at the time: same attorney is repeatedly identified as Dietze.
+Review recommendation: questionable without ear-checking, but likely consistent with surrounding name references.
+
+11. Dietze name
+Before: sent these minutes down to Ditsa
+After:  sent these minutes down to Dietze
+Affected files:
+- 2-Tape_1_Side_B .txt/.srt/.vtt
+My rationale at the time: same as above.
+Review recommendation: questionable without ear-checking.
+
+12. Docheffs name
+Before: the Dolcevs and the town council
+After:  the Docheffs and the town council
+Affected files:
+- 2-Tape_1_Side_B .txt/.srt/.vtt
+My rationale at the time: surrounding transcript consistently uses Docheff/Docheffs.
+Review recommendation: questionable without ear-checking, but likely a proper-name correction.
+
+13. Missing space before tag
+Before: go back to[Unintelligible]
+After:  go back to [Unintelligible]
+Affected files:
+- 7-Tape_4_Side_A .txt/.srt/.vtt
+My rationale at the time: formatting cleanup.
+Review recommendation: likely safe.
+
+14. Stray Whisper artifact
+Before: [Unintelligible] Whisper: "You know how
+After:  [Unintelligible]
+Affected files:
+- 7-Tape_4_Side_A .txt/.srt/.vtt
+My rationale at the time: looked like an accidental note/artifact rather than transcript text.
+Review recommendation: questionable. If you deliberately inserted "Whisper: ..." as a note, this should be restored.
+
+15. Tape 3 Side A txt rollup cue join
+Before: Screw your If they would
+After:  Screw your neighbor. If they would
+Affected files:
+- 3-Tape_2_Side_A .txt only
+My rationale at the time: .srt/.vtt contain adjacent verified cues "Screw your" / "neighbor."; the .txt rollup appeared to have dropped the second cue.
+Review recommendation: probably safe if the .txt should reflect the timed files; still review because it changes content.
+
+16. Tape 3 Side A txt rollup restoration from timed cues
+Before: revenge. is gone. I don't doubt
+After:  revenge. I don't know. I don't doubt
+Affected files:
+- 3-Tape_2_Side_A .txt only
+My rationale at the time: .srt/.vtt at the same point have "I don't know." as the next cue, not "is gone."; the .txt looked misflattened.
+Review recommendation: probably safe if the .txt should mirror the timed files, but review.
+
+17. Tape 3 Side A txt rollup restoration from timed cues
+Before: falling off. is gone. He had
+After:  falling off. I don't know. He had
+Affected files:
+- 3-Tape_2_Side_A .txt only
+My rationale at the time: .srt/.vtt at the same point have "I don't know." as the next cue.
+Review recommendation: probably safe if the .txt should mirror the timed files, but review.
+
+18. Tape 3 Side A txt rollup restoration from timed cues
+Before: before I was born. is gone. I don't understand
+After:  before I was born. I don't know. I don't understand
+Affected files:
+- 3-Tape_2_Side_A .txt only
+My rationale at the time: .srt/.vtt at the same point have "I don't know." as the next cue.
+Review recommendation: probably safe if the .txt should mirror the timed files, but review.
+
+19. Backhoe brand
+Before: Cabalco backhoe
+After:  Kobelco backhoe
+Affected files:
+- 4-Tape_2_Side_B .txt/.srt/.vtt
+My rationale at the time: "Kobelco" is a known equipment brand; "Cabalco" looked like ASR/phonetic error.
+Review recommendation: questionable without ear-checking. This is a normalization and may be unwarranted.
+
+20. Backhoe brand
+Before: The Cabalco made the minimum
+After:  The Kobelco made the minimum
+Affected files:
+- 4-Tape_2_Side_B .txt/.srt/.vtt
+My rationale at the time: same as above.
+Review recommendation: questionable without ear-checking.
+
+21. Backhoe/dozer sentence cleanup
+Before: keep the Cabalco?
+After:  keep? The Kobelco?
+Affected files:
+- 4-Tape_2_Side_B .txt/.srt/.vtt
+My rationale at the time: attempted to make the sentence read coherently with the next phrase "I mean, the Komatsu dozer and the property."
+Review recommendation: most questionable. This changes punctuation and phrasing beyond typo correction. Strong candidate for rollback unless confirmed.
+
+22. Auction company
+Before: Richie Brothers
+After:  Ritchie Brothers
+Affected files:
+- 4-Tape_2_Side_B .txt/.srt/.vtt
+My rationale at the time: auction company is commonly "Ritchie Bros."
+Review recommendation: questionable without ear-checking or documentary preference. Also, if using official name, "Ritchie Bros." may be preferable to "Ritchie Brothers."
+
+23. Auction term
+Before: a bit of 450,000
+After:  a bid of 450,000
+Affected files:
+- 4-Tape_2_Side_B .txt/.srt/.vtt
+My rationale at the time: auction context makes "bid" likely.
+Review recommendation: likely safe but still content-changing.
+
+24. Tape 4 wording cleanup
+Before: any morning - any more..
+After:  any more.
+Affected files:
+- 4-Tape_2_Side_B .txt/.srt/.vtt
+My rationale at the time: looked like ASR typo and duplicate punctuation.
+Review recommendation: questionable for verbatim style. The "morning" fragment might represent speech or a transcription artifact; review by ear.
+
+25. Technical term
+Before: Cyrochirogenics or something like that
+After:  Cryogenics or something like that
+Affected files:
+- 4-Tape_2_Side_B .txt/.srt/.vtt
+My rationale at the time: "cryogenics" is the likely intended term.
+Review recommendation: questionable without ear-checking, but likely a term correction.
+
+26. Technical term
+Before: a chirogenics cooling system
+After:  a cryogenic cooling system
+Affected files:
+- 4-Tape_2_Side_B .txt/.srt/.vtt
+My rationale at the time: grammatical version of the likely technical term.
+Review recommendation: questionable. This normalizes wording and may not preserve the spoken form.
+
+Potentially suspicious items I noticed but did NOT change
+These may still need human review:
+- "The bill property was still there." in Tape 4 Side B. Could be "building/property" or something else, but I did not change it.
+- "the edging browsers off" in Tape 4 Side B. Could be a machinery term, but I did not change it.
+- "increase the hourly fuel consumption" in Tape 4 Side B. Context may suggest "decrease" or another phrase, but I did not change it.
+- "infield traders" in Tape 3 Side A. Could be a misrecognition, but I did not change it.
+- "guidelines are are imposed" in Tape 3 Side A. Could be spoken repetition; I did not change it.
+- "had all  inherited" in Tape 3 Side A. This looks mechanically suspicious, but I did not change it.
+- "HGB zoning" / "H-2-D zoning" / "South Agate plan" / "concrete back plant" may be transcription terms or may need ear/document review. I did not change them in this pass.
+
+Recommended next step
+I recommend that you mark each numbered change as:
+- KEEP
+- ROLLBACK
+- NEEDS EAR-CHECK
+
+If you provide those decisions, I can apply an exact targeted rollback/cleanup pass.

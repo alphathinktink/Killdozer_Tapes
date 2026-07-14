@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>index.html</loc></url>
+  <url><loc>provenance.html</loc></url>
+  <url><loc>transcripts/tape-1-side-a.html</loc></url>
+  <url><loc>transcripts/tape-1-side-b.html</loc></url>
+  <url><loc>transcripts/tape-2-side-a.html</loc></url>
+  <url><loc>transcripts/tape-2-side-b.html</loc></url>
+  <url><loc>transcripts/tape-3-side-a.html</loc></url>
+  <url><loc>transcripts/tape-3-side-b.html</loc></url>
+  <url><loc>transcripts/tape-4-side-a.html</loc></url>
+</urlset>

@@ -1,0 +1,279 @@
+﻿Killdozer Tapes - Transcription QA Timestamp and Sample Report
+Generated: 2026-07-08
+
+Purpose
+This document collects the obvious Large-v3 transcription problem areas found during the first QA pass.
+Use these regions for manual ear-checking in GoldWave, Audacity, or another waveform editor.
+
+Sample conversion
+44.1 kHz sample = round(seconds * 44100)
+48 kHz sample   = round(seconds * 48000)
+
+Notes
+- The sample counts below are relative to the beginning of each individual MP3 file.
+- "Prompt leak" means Buzz/Whisper wrote the initial prompt text, "Transcribe verbatim.", as if it were spoken audio.
+- "Mojibake" means corrupted non-English characters or mixed-script garbage appeared in the transcript.
+- The TXT files are convenient to read, but the SRT files are better for correction because they preserve timestamps.
+
+Summary by tape
+- 1-Tape_1_Side_A: Good overall improvement over Tiny, but several localized hallucination bursts.
+- 2-Tape_1_Side_B: Mostly usable after removing prompt leak; a few artifacts need checking.
+- 3-Tape_2_Side_A: Roughest transcript mechanically; prompt leak and multiple hallucination sections.
+- 4-Tape_2_Side_B: Mostly clean after removing prompt leak; a few short duplicate/suspicious areas.
+- 5-Tape_3_Side_A: Comparatively clean after removing prompt leak.
+- 6-Tape_3_Side_B: Mostly clean, but final section has repetition and suspect names.
+- 7-Tape_4_Side_A: Meeting audio; more crosstalk/noise issues and an overrun at the end.
+
+Detailed QA Items
+
+Tape: 1-Tape_1_Side_A
+Time: 00:08:56.960 - 00:08:57.560
+44.1 kHz samples: 23,679,936 - 23,706,396
+48 kHz samples:   25,774,080 - 25,802,880
+Status: Resolved in SRT/VTT/TXT. Verified spoken segment is "And so, I got the property for $50,000." from 00:08:54.900 to 00:08:58.000.
+
+Tape: 1-Tape_1_Side_A
+Time: 00:11:26.439 - 00:11:27.540
+44.1 kHz samples: 30,271,960 - 30,320,514
+48 kHz samples:   32,949,072 - 33,001,920
+Status: Resolved in SRT/VTT/TXT. Verified segment is part of "that I was purchasing this property and" from 00:11:25.359 to 00:11:27.540. Deleted invented phrases "He was going to sell it to me" / "I was going to sell it to him".
+
+Tape: 1-Tape_1_Side_A
+Time: 00:15:46.079 - 00:16:13.920
+44.1 kHz samples: 41,722,084 - 42,949,872
+48 kHz samples:   45,411,792 - 46,748,160
+Error: Major hallucination/mojibake burst in water and sanitation district/annexation section.
+
+Tape: 1-Tape_1_Side_A
+Time: 00:18:43.679 - 00:18:43.740
+44.1 kHz samples: 49,554,244 - 49,556,934
+48 kHz samples:   53,936,592 - 53,939,520
+Error: Duplicate micro-caption: "the people who had the money," likely artifact.
+
+Tape: 1-Tape_1_Side_A
+Time: 00:23:38.340 - 00:23:44.580
+44.1 kHz samples: 62,548,794 - 62,823,978
+48 kHz samples:   68,080,320 - 68,379,840
+Status: Resolved in SRT/VTT/TXT. Verified he says the phrase backwards first: "I'm making lemons out of lemonade or lemonade out of lemons..." Buzz had hallucinated repeated variants.
+
+Tape: 1-Tape_1_Side_A
+Time: 00:24:31.220 - 00:25:03.200
+44.1 kHz samples: 64,880,802 - 66,291,120
+48 kHz samples:   70,618,560 - 72,153,600
+Status: Resolved in SRT/VTT/TXT. Corrected "muscle works" to "muffler works," "grammy here" to "granby here," "mouth for business" to "muffler business," and "someone's concerned" to "summer is concerned."
+
+Tape: 1-Tape_1_Side_A
+Time: 00:27:42.800 - 00:27:48.880
+44.1 kHz samples: 73,329,480 - 73,597,608
+48 kHz samples:   79,814,400 - 80,106,240
+Status: Resolved in SRT/VTT/TXT. Corrected the appraiser name cluster to Dowdna / Dowdna and Wilson / Wilson and Dowdna commercial appraisers. Additional context indicates the proper form is Dowdna & Wilson.
+
+Tape: 1-Tape_1_Side_A
+Time: 00:28:00.640 - 00:28:05.800
+44.1 kHz samples: 74,116,224 - 74,343,780
+48 kHz samples:   80,670,720 - 80,918,400
+Status: Resolved in SRT/VTT/TXT. Replaced hallucinated/mojibake burst with verified text: "property to cody / for / um / 250. / I says, Cody, I'll walk away from my business."
+
+Tape: 1-Tape_1_Side_A
+Time: 00:31:25.860 - 00:31:31.380
+44.1 kHz samples: 83,166,426 - 83,409,858
+48 kHz samples:   90,521,280 - 90,786,240
+Status: Resolved in SRT/VTT/TXT. Everything from and including the cue "I just..." at 00:31:01.400 was verified as hallucination from dead air and removed.
+
+Tape: 2-Tape_1_Side_B
+Time: 00:00:00.000 - 00:00:59.980
+44.1 kHz samples: 0 - 2,645,118
+48 kHz samples:   0 - 2,879,040
+Status: Resolved in SRT/VTT/TXT. Replaced initial prompt leak with recovered Audacity transcription of the first minute, including [unintelligible] markers.
+
+Tape: 2-Tape_1_Side_B
+Time: 00:01:53.720 - 00:01:55.980
+44.1 kHz samples: 5,015,052 - 5,114,718
+48 kHz samples:   5,458,560 - 5,567,040
+Resolved: Corrected attorney name to "Dietze", corrected "South Agate plan", split duplicate cue into "So" / "I" / "went down there...", and corrected "cowardly steep" to "cowardly thief."
+
+Tape: 2-Tape_1_Side_B
+Time: 00:10:55.300 - 00:11:04.860
+44.1 kHz samples: 28,898,730 - 29,320,326
+48 kHz samples:   31,454,400 - 31,913,280
+Resolved: Replaced mojibake/non-English artifact burst with corrected Dietze/final-meeting/lawsuit passage.
+
+Tape: 2-Tape_1_Side_B
+Time: 00:21:04.020 - 00:21:06.020
+44.1 kHz samples: 55,743,282 - 55,831,482
+48 kHz samples:   60,672,960 - 60,768,960
+Resolved: Corrected duplicate county-owned property line to "It was county-owned / pro er - it was county zone property" and adjusted water/sewer rights cue split.
+
+Tape: 3-Tape_2_Side_A
+Time: 00:00:00.000 - 00:03:59.980
+44.1 kHz samples: 0 - 10,583,118
+48 kHz samples:   0 - 11,519,040
+Resolved: Replaced initial repeated prompt leak with manually transcribed 00:00:01.720-00:04:07.420 opening section.
+
+Tape: 3-Tape_2_Side_A
+Time: 00:06:39.299 - 00:06:48.859
+44.1 kHz samples: 17,609,086 - 18,030,682
+48 kHz samples:   19,166,352 - 19,625,232
+Resolved: Replaced mojibake/hallucination burst with corrected Cody/Docheff appraisal passage.
+
+Tape: 3-Tape_2_Side_A
+Time: 00:09:59.579 - 00:10:24.640
+44.1 kHz samples: 26,441,434 - 27,546,624
+48 kHz samples:   28,779,792 - 29,982,720
+Resolved: Replaced hallucination/mojibake burst with corrected hot-tub/peace passage.
+
+Tape: 3-Tape_2_Side_A
+Time: 00:13:56.460 - 00:13:58.460
+44.1 kHz samples: 36,887,886 - 36,976,086
+48 kHz samples:   40,150,080 - 40,246,080
+Resolved: Replaced adjacent duplicate "And I stopped" cluster with corrected truck/laugh line split.
+
+Tape: 3-Tape_2_Side_A
+Time: 00:16:22.420 - 00:16:23.620
+44.1 kHz samples: 43,324,722 - 43,377,642
+48 kHz samples:   47,156,160 - 47,213,760
+Resolved: Split adjacent duplicate "Screw your neighbor" across two cues: "Screw your" / "neighbor."
+
+Tape: 3-Tape_2_Side_A
+Time: 00:22:49.220 - 00:23:04.220
+44.1 kHz samples: 60,382,602 - 61,044,102
+48 kHz samples:   65,722,560 - 66,442,560
+Resolved: Replaced mojibake/non-English artifact burst with corrected Marv's Komatsu/MK Tank passage.
+
+Tape: 3-Tape_2_Side_A
+Time: 00:27:03.340 - 00:27:03.920
+44.1 kHz samples: 71,589,294 - 71,614,872
+48 kHz samples:   77,920,320 - 77,948,160
+Resolved: Preserved first two spoken "I need to" fragments and removed third Whisper repeat before "digress".
+
+Tape: 3-Tape_2_Side_A
+Time: 00:31:02.240 - 00:31:30.160
+44.1 kHz samples: 82,124,784 - 83,356,056
+48 kHz samples:   89,387,520 - 90,727,680
+Resolved: Replaced repeated end hallucination with verified Heemeyer/dead-air/tape-hiss ending and adjusted cue timing.
+
+Tape: 4-Tape_2_Side_B
+Time: 00:00:00.000 - 00:03:04.000
+44.1 kHz samples: 0 - 8,114,400
+48 kHz samples:   0 - 8,832,000
+Error: Initial prompt leaked repeatedly as transcript: "Transcribe verbatim." Delete unless audio really contains this phrase.
+Status: Resolved - replaced prompt leak with manual transcription and inserted missing 00:03:04.000 - 00:03:30.000 cue.
+
+Tape: 4-Tape_2_Side_B
+Time: 00:03:30.000 - 00:03:59.960
+44.1 kHz samples: 9,261,000 - 10,582,236
+48 kHz samples:   10,080,000 - 11,518,080
+Error: Initial prompt leaked again in later start segment: "Transcribe verbatim."
+Status: Resolved - replaced prompt leak with manual transcription.
+
+Tape: 4-Tape_2_Side_B
+Time: 00:11:59.520 - 00:11:59.959
+44.1 kHz samples: 31,730,832 - 31,750,192
+48 kHz samples:   34,536,960 - 34,558,032
+Error: Fragment/duplicate artifact: "when you,".
+Status: Verified accurate - repeated fragments are spoken in the audio, not a duplicate artifact.
+
+Tape: 4-Tape_2_Side_B
+Time: 00:16:06.760 - 00:16:09.000
+44.1 kHz samples: 42,634,116 - 42,732,900
+48 kHz samples:   46,404,480 - 46,512,000
+Error: Adjacent duplicate: "It didn't bring it."
+Status: Verified accurate - both instances are spoken in the audio, not a duplicate artifact.
+
+Tape: 4-Tape_2_Side_B
+Time: 00:17:24.839 - 00:17:26.879
+44.1 kHz samples: 46,077,400 - 46,167,364
+48 kHz samples:   50,152,272 - 50,250,192
+Error: Suspicious dollar statement: "I'm not going to sell it for $24,000..." verify amount and wording.
+Status: Resolved - corrected wording to "I'm not going to sell it / for that, especially when / Ritchie Brothers says it's worth 43."
+
+Tape: 5-Tape_3_Side_A
+Time: 00:00:00.000 - 00:00:29.980
+44.1 kHz samples: 0 - 1,322,118
+48 kHz samples:   0 - 1,439,040
+Error: Initial prompt leaked as transcript: "Transcribe verbatim." Delete unless audio really contains this phrase.
+Status: Resolved - replaced prompt leak with manual transcription from 00:00:03.830 to 00:00:30.000.
+
+Tape: 5-Tape_3_Side_A
+Time: 00:04:14.940 - 00:04:15.540
+44.1 kHz samples: 11,242,854 - 11,269,314
+48 kHz samples:   12,237,120 - 12,265,920
+Error: Adjacent duplicate/fragment: "And reduced it."
+Status: Verified accurate - fragment is spoken in the audio, not a duplicate artifact.
+
+Tape: 5-Tape_3_Side_A
+Time: 00:04:56.840 - 00:04:57.260
+44.1 kHz samples: 13,090,644 - 13,109,166
+48 kHz samples:   14,248,320 - 14,268,480
+Error: Adjacent duplicate/fragment: "I am here."
+Status: Resolved - split spoken phrase across cues as "I am" / "here," and lowercased following phrase.
+
+Tape: 5-Tape_3_Side_A
+Time: 00:22:09.240 - 00:22:10.640
+44.1 kHz samples: 58,619,484 - 58,681,224
+48 kHz samples:   63,803,520 - 63,870,720
+Error: Adjacent duplicate: "If I had the money."
+Status: Resolved - repeated money phrases corrected to background-noise markers plus the actual spoken phrase.
+
+Tape: 6-Tape_3_Side_B
+Time: 00:00:00.000 - 00:00:29.980
+44.1 kHz samples: 0 - 1,322,118
+48 kHz samples:   0 - 1,439,040
+Error: Initial prompt leaked as transcript: "Transcribe verbatim." Delete unless audio really contains this phrase.
+Status: Resolved - prompt leak replaced with hand-transcribed opening cues.
+
+Tape: 6-Tape_3_Side_B
+Time: 00:05:13.360 - 00:05:24.880
+44.1 kHz samples: 13,819,176 - 14,327,208
+48 kHz samples:   15,041,280 - 15,594,240
+Error: Repeated phrases and suspect names: Docheff girl, D&J son, Northland/Northamy. Verify by ear.
+Status: Resolved - repeated hallucinated phrases corrected; suspect names reviewed by ear and retained as Docheff, D&J's, and Northamy.
+
+Tape: 7-Tape_4_Side_A
+Time: 00:01:30.000 - 00:01:35.020
+44.1 kHz samples: 3,969,000 - 4,190,382
+48 kHz samples:   4,320,000 - 4,560,960
+Error: Non-English/mojibake caption only: likely silence/noise or failed recognition.
+Status: Resolved - mojibake cue replaced with [Unintelligible].
+
+Tape: 7-Tape_4_Side_A
+Time: 00:01:53.940 - 00:01:59.100
+44.1 kHz samples: 5,024,754 - 5,252,310
+48 kHz samples:   5,469,120 - 5,716,800
+Error: Corrupted meeting text with mojibake: "betterment... Rivera"; verify exact speech.
+Status: Resolved - corrupted wording trimmed and uncertain text marked [Unintelligible] in the preceding cue.
+
+Tape: 7-Tape_4_Side_A
+Time: 00:04:01.820 - 00:04:03.820
+44.1 kHz samples: 10,664,262 - 10,752,462
+48 kHz samples:   11,607,360 - 11,703,360
+Error: Adjacent duplicate: "I'll leave it with you."
+Status: Resolved - repeated meeting captions replaced with corrected meeting exchange and background-audio notes.
+
+Tape: 7-Tape_4_Side_A
+Time: 00:05:46.020 - 00:05:48.020
+44.1 kHz samples: 15,259,482 - 15,347,682
+48 kHz samples:   16,608,960 - 16,704,960
+Error: Adjacent duplicate: "I'm glad you said preliminary plan."
+Status: Resolved - duplicate captions replaced with [Unintelligible].
+
+Tape: 7-Tape_4_Side_A
+Time: 00:07:29.020 - 00:07:32.020
+44.1 kHz samples: 19,801,782 - 19,934,082
+48 kHz samples:   21,552,960 - 21,696,960
+Error: Repeated caption: "I think we should do it."
+Status: Resolved - repeated captions replaced and skipped section restored with extended 00:07:31.020 cue.
+
+Tape: 7-Tape_4_Side_A
+Time: 00:08:04.020 - 00:08:15.020
+44.1 kHz samples: 21,345,282 - 21,830,382
+48 kHz samples:   23,232,960 - 23,760,960
+Error: Repeated caption: "Thank you." likely hallucinated or over-repeated.
+Status: Resolved - repeated Thank you captions corrected across 00:07:51.020-00:08:17.020; retained real October 10th and final Thank you cues.
+
+Tape: 7-Tape_4_Side_A
+Time: 00:10:12.440 - 00:10:40.100
+44.1 kHz samples: 27,008,604 - 28,228,410
+48 kHz samples:   29,397,120 - 30,724,800
+Error: Transcript overruns audio by about 28 seconds; likely hallucinated ending.
+Status: Resolved - hallucinated ending collapsed into final [Cassette tape hiss] cue ending at 00:10:40.100.

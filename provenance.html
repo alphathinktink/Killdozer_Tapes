@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Killdozer Tapes - Transcript Provenance</title>
+  <meta name="description" content="Authorship, process, and transparency notes for the Buzz/Whisper transcripts and later human-assisted Codex/ChatGPT edits.">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "AboutPage", "name": "Killdozer Tapes Transcript Provenance", "dateModified": "2026-07-14 06:54:54 UTC", "about": "Transcript origin, machine transcription credit, human-assisted editing notes, backups, QA reports, and supporting artifacts."}</script>
+</head>
+<body class="transcript-page">
+  <main class="transcript-document provenance-document">
+    <nav class="crumbs"><a href="index.html">Archive index</a></nav>
+    <header>
+      <p class="eyebrow">Process and authorship</p>
+      <h1>Transcript Provenance</h1>
+      <p class="lede">This archive should not imply that the transcripts were authored from scratch by a human. The initial transcript creation is credited to Buzz using Whisper Large-v3. Later work was limited human review, correction, formatting, and Codex/ChatGPT-assisted cleanup.</p>
+    </header>
+
+    <section>
+      <h2>Short Attribution Statement</h2>
+      <p><strong>Initial transcription:</strong> Buzz / Whisper Large-v3.</p>
+      <p><strong>Later editing and publication preparation:</strong> Leonard Bogard, with Codex/ChatGPT assistance.</p>
+      <p><strong>Status:</strong> partially reviewed and corrected, but not fully human-certified as a verbatim transcript.</p>
+    </section>
+
+    <section>
+      <h2>Process Summary</h2>
+      <ol>
+        <li>Source MP3 recordings were gathered for seven tape sides. Tape 1 Side B also has a fast-forward-corrected audio file that is used as the primary web playback source.</li>
+        <li>Audio was transcoded to 44.1 kHz / 16-bit WAV files for waveform review and sample-count references. Those files are preserved in <a href="wav-44.1khz-16bit/">wav-44.1khz-16bit/</a>.</li>
+        <li>Initial transcript outputs were generated with Buzz using Whisper Large-v3, producing TXT, SRT, and VTT transcript files.</li>
+        <li>Original transcript copies were preserved in <a href="Original%20Transcriptions%20Backup/">Original Transcriptions Backup/</a> before later correction passes.</li>
+        <li>A first QA pass identified obvious Whisper/Buzz failure modes, including prompt leaks, hallucinated text, mojibake/non-English garbage, duplicate captions, overrun after audio ended, and suspicious names or terms.</li>
+        <li>Some segments were manually ear-checked in audio tools such as GoldWave or Audacity. The QA report records timestamp ranges, sample counts, and resolution notes where available.</li>
+        <li>Codex/ChatGPT was used as an editing assistant for limited cleanup, consistency checks, report generation, and archive-site generation. The Codex change report lists later replacement-style edits and explicitly marks several as questionable without ear-checking.</li>
+        <li>The present web archive was generated from the current edited transcript files. It exposes synchronized transcript cues, plain transcript pages, original text/caption files, reports, and machine-readable metadata.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Known Machine Transcription Issues</h2>
+      <p>The QA report documents several common automatic speech recognition problems found in this set: prompt leakage from the instruction phrase "Transcribe verbatim.", hallucinated text during silence or noisy sections, mojibake/corrupted non-English output, repeated captions, and uncertain proper names. Resolved items are marked in the QA report where they were checked or corrected.</p>
+      <p>Some later Codex-assisted edits normalized spelling, names, punctuation, or likely terms. The change report intentionally flags edits that may need ear-checking before being treated as final.</p>
+      <p>A remaining example of this uncertainty is visible near the end of Tape 4 Side A, where the current transcript still contains a bracketed <code>[Whisper: ...]</code> phrase. That artifact is preserved because it exists in the current source transcript files; it should not be treated as independently verified speech without checking the audio.</p>
+    </section>
+
+    <section>
+      <h2>Supporting Artifacts</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Artifact</th><th>Path</th><th>Purpose</th></tr></thead>
+          <tbody><tr><td>Buzz conversion screenshot</td><td><a href="Buzz%20conversion%20screenshot.png">Buzz conversion screenshot.png</a></td><td>Screenshot retained as evidence of the Buzz conversion workflow.</td></tr>
+<tr><td>QA timestamp report</td><td><a href="Transcription_QA_Timestamp_Sample_Report.txt">Transcription_QA_Timestamp_Sample_Report.txt</a></td><td>Timestamped list of suspected Whisper/Buzz transcript issues, resolved items, and sample positions.</td></tr>
+<tr><td>Codex change report</td><td><a href="Codex_Change_Report_2026-07-13.txt">Codex_Change_Report_2026-07-13.txt</a></td><td>Best-effort report of Codex-assisted replacements and review recommendations.</td></tr>
+<tr><td>Original transcription backups</td><td><a href="Original%20Transcriptions%20Backup/">Original Transcriptions Backup/</a></td><td>Backup copies of earlier transcript files before later cleanup passes.</td></tr>
+<tr><td>44.1 kHz / 16-bit WAV transcodes</td><td><a href="wav-44.1khz-16bit/">wav-44.1khz-16bit/</a></td><td>WAV transcodes retained for waveform review and sample-count referencing.</td></tr>
+<tr><td>Machine catalog</td><td><a href="data/catalog.json">data/catalog.json</a></td><td>Machine-readable SPA catalog with transcript text, cue timing, and provenance metadata.</td></tr>
+<tr><td>LLM guidance</td><td><a href="llms.txt">llms.txt</a></td><td>Plain text guidance for AI assistants and scrapers.</td></tr></tbody>
+        </table>
+      </div>
+      <figure class="evidence-figure">
+        <img src="Buzz%20conversion%20screenshot.png" alt="Buzz conversion screenshot">
+        <figcaption>Screenshot retained with the archive as conversion-process evidence.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Transcript File Map</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Recording</th><th>Plain text</th><th>VTT captions</th><th>SRT captions</th><th>Backup</th></tr></thead>
+          <tbody><tr><td>Tape 1 Side A</td><td><a href="1-Tape_1_Side_A%20%28transcribed%20on%2007-Jul-2026%2017-19-37%29.txt">TXT</a></td><td><a href="1-Tape_1_Side_A%20%28transcribed%20on%2007-Jul-2026%2017-19-37%29.vtt">VTT</a></td><td><a href="1-Tape_1_Side_A%20%28transcribed%20on%2007-Jul-2026%2017-19-36%29.srt">SRT</a></td><td><a href="Original%20Transcriptions%20Backup/1-Tape_1_Side_A%20%28transcribed%20on%2007-Jul-2026%2017-19-37%29.txt">backup TXT</a></td></tr>
+<tr><td>Tape 1 Side B</td><td><a href="2-Tape_1_Side_B%20%28transcribed%20on%2007-Jul-2026%2019-39-22%29.txt">TXT</a></td><td><a href="2-Tape_1_Side_B%20%28transcribed%20on%2007-Jul-2026%2019-39-22%29.vtt">VTT</a></td><td><a href="2-Tape_1_Side_B%20%28transcribed%20on%2007-Jul-2026%2019-39-22%29.srt">SRT</a></td><td><a href="Original%20Transcriptions%20Backup/2-Tape_1_Side_B%20%28transcribed%20on%2007-Jul-2026%2019-39-22%29.txt">backup TXT</a></td></tr>
+<tr><td>Tape 2 Side A</td><td><a href="3-Tape_2_Side_A%20%28transcribed%20on%2007-Jul-2026%2022-08-52%29.txt">TXT</a></td><td><a href="3-Tape_2_Side_A%20%28transcribed%20on%2007-Jul-2026%2022-08-52%29.vtt">VTT</a></td><td><a href="3-Tape_2_Side_A%20%28transcribed%20on%2007-Jul-2026%2022-08-52%29.srt">SRT</a></td><td><a href="Original%20Transcriptions%20Backup/3-Tape_2_Side_A%20%28transcribed%20on%2007-Jul-2026%2022-08-52%29.txt">backup TXT</a></td></tr>
+<tr><td>Tape 2 Side B</td><td><a href="4-Tape_2_Side_B%20%28transcribed%20on%2007-Jul-2026%2023-33-02%29.txt">TXT</a></td><td><a href="4-Tape_2_Side_B%20%28transcribed%20on%2007-Jul-2026%2023-33-02%29.vtt">VTT</a></td><td><a href="4-Tape_2_Side_B%20%28transcribed%20on%2007-Jul-2026%2023-33-02%29.srt">SRT</a></td><td><a href="Original%20Transcriptions%20Backup/4-Tape_2_Side_B%20%28transcribed%20on%2007-Jul-2026%2023-33-02%29.txt">backup TXT</a></td></tr>
+<tr><td>Tape 3 Side A</td><td><a href="5-Tape_3_Side_A%20%28transcribed%20on%2008-Jul-2026%2000-54-56%29.txt">TXT</a></td><td><a href="5-Tape_3_Side_A%20%28transcribed%20on%2008-Jul-2026%2000-54-56%29.vtt">VTT</a></td><td><a href="5-Tape_3_Side_A%20%28transcribed%20on%2008-Jul-2026%2000-54-56%29.srt">SRT</a></td><td><a href="Original%20Transcriptions%20Backup/5-Tape_3_Side_A%20%28transcribed%20on%2008-Jul-2026%2000-54-56%29.txt">backup TXT</a></td></tr>
+<tr><td>Tape 3 Side B</td><td><a href="6-Tape_3_Side_B%20%28transcribed%20on%2008-Jul-2026%2001-17-54%29.txt">TXT</a></td><td><a href="6-Tape_3_Side_B%20%28transcribed%20on%2008-Jul-2026%2001-17-54%29.vtt">VTT</a></td><td><a href="6-Tape_3_Side_B%20%28transcribed%20on%2008-Jul-2026%2001-17-54%29.srt">SRT</a></td><td><a href="Original%20Transcriptions%20Backup/6-Tape_3_Side_B%20%28transcribed%20on%2008-Jul-2026%2001-17-54%29.txt">backup TXT</a></td></tr>
+<tr><td>Tape 4 Side A</td><td><a href="7-Tape_4_Side_A%20%28transcribed%20on%2008-Jul-2026%2002-13-02%29.txt">TXT</a></td><td><a href="7-Tape_4_Side_A%20%28transcribed%20on%2008-Jul-2026%2002-13-02%29.vtt">VTT</a></td><td><a href="7-Tape_4_Side_A%20%28transcribed%20on%2008-Jul-2026%2002-13-02%29.srt">SRT</a></td><td><a href="Original%20Transcriptions%20Backup/7-Tape_4_Side_A%20%28transcribed%20on%2008-Jul-2026%2002-13-02%29.txt">backup TXT</a></td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Recommended Citation Note</h2>
+      <p>When quoting or relying on the transcript, cite the tape side and timestamp, and preferably verify the quoted passage against the audio. A fair attribution is: "Transcript initially generated with Buzz/Whisper Large-v3 and later lightly corrected by Leonard Bogard with Codex/ChatGPT assistance."</p>
+    </section>
+
+    <section>
+      <h2>Machine-Readable Access</h2>
+      <p>AI assistants, crawlers, and scrapers can read <a href="data/catalog.json">data/catalog.json</a>, <a href="llms.txt">llms.txt</a>, and the standalone transcript pages under <a href="transcripts/">transcripts/</a>. Those surfaces include provenance language so downstream users can see that the transcripts originated from automatic speech recognition.</p>
+    </section>
+  </main>
+</body>
+</html>

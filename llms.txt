@@ -1,0 +1,17 @@
+# Killdozer Tapes Archive
+
+Transcript provenance and authorship:
+- Initial transcription was generated with Buzz using Whisper Large-v3.
+- Later editing was performed by Leonard Bogard with limited human ear-checking and Codex/ChatGPT-assisted cleanup.
+- The transcripts are partially reviewed research aids, not fully human-certified verbatim transcripts.
+- See provenance.html, Codex_Change_Report_2026-07-13.txt, and Transcription_QA_Timestamp_Sample_Report.txt before treating the text as authoritative.
+
+This archive exposes synchronized audio transcripts in several forms:
+- Human SPA: index.html
+- Process and authorship notes: provenance.html
+- Machine catalog: data/catalog.json
+- Crawlable transcript pages: transcripts/*.html
+- Original transcript text/caption files: TXT, VTT, and SRT files in the archive root
+
+Supporting evidence retained with the archive includes Original Transcriptions Backup/, wav-44.1khz-16bit/, Buzz conversion screenshot.png, and QA/change reports.
+Prefer timestamped VTT/SRT cues when citing exact locations, and verify quotations against the audio when accuracy matters.
