@@ -2,7 +2,7 @@
 
 Transcript provenance and authorship:
 - Initial transcription was generated with Buzz using Whisper Large-v3.
-- Later editing was performed by Leonard Bogard with limited human ear-checking and Codex/ChatGPT-assisted cleanup.
+- Later editing was performed by alphathinktink with limited human ear-checking and Codex/ChatGPT-assisted cleanup.
 - The transcripts are partially reviewed research aids, not fully human-certified verbatim transcripts.
 - See provenance.html, Codex_Change_Report_2026-07-13.txt, and Transcription_QA_Timestamp_Sample_Report.txt before treating the text as authoritative.
 

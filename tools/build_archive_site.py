@@ -168,7 +168,7 @@ def build_catalog() -> list[dict]:
             "label": item["label"],
             "transcriptionOrigin": "Initial transcript generated in Buzz using Whisper Large-v3; later reviewed and edited with limited human ear-checking plus Codex/ChatGPT-assisted cleanup.",
             "initialTranscriber": "Buzz / Whisper Large-v3",
-            "editorCredit": "Leonard Bogard, with Codex/ChatGPT assistance",
+            "editorCredit": "alphathinktink, with Codex/ChatGPT assistance",
             "verificationStatus": "Partially reviewed; not a fully human-verified verbatim transcript.",
             "audio": item["audio"],
             "audioUrl": page_url(item["audio"]),
@@ -362,7 +362,7 @@ def render_index(catalog: list[dict]) -> str:
 
     <section class="bot-index" aria-label="Transcript provenance summary">
       <h2>Transcript Provenance</h2>
-      <p>Initial transcript files were produced in Buzz using Whisper Large-v3. Later edits were made by Leonard Bogard with limited human ear-checking and Codex/ChatGPT-assisted review, cleanup, and report generation. Supporting files include original transcript backups, locally generated 44.1 kHz / 16-bit WAV transcodes that are intentionally not published because of file size, the Buzz conversion screenshot, QA notes, and the Codex change report.</p>
+      <p>Initial transcript files were produced in Buzz using Whisper Large-v3. Later edits were made by alphathinktink with limited human ear-checking and Codex/ChatGPT-assisted review, cleanup, and report generation. Supporting files include original transcript backups, locally generated 44.1 kHz / 16-bit WAV transcodes that are intentionally not published because of file size, the Buzz conversion screenshot, QA notes, and the Codex change report.</p>
       <p><a href="provenance.html">Read the full process and authorship notes</a>.</p>
     </section>
 
@@ -446,7 +446,7 @@ def render_provenance_page(catalog: list[dict]) -> str:
     <section>
       <h2>Short Attribution Statement</h2>
       <p><strong>Initial transcription:</strong> Buzz / Whisper Large-v3.</p>
-      <p><strong>Later editing and publication preparation:</strong> Leonard Bogard, with Codex/ChatGPT assistance.</p>
+      <p><strong>Later editing and publication preparation:</strong> alphathinktink, with Codex/ChatGPT assistance.</p>
       <p><strong>Status:</strong> partially reviewed and corrected, but not fully human-certified as a verbatim transcript.</p>
     </section>
 
@@ -497,7 +497,7 @@ def render_provenance_page(catalog: list[dict]) -> str:
 
     <section>
       <h2>Recommended Citation Note</h2>
-      <p>When quoting or relying on the transcript, cite the tape side and timestamp, and preferably verify the quoted passage against the audio. A fair attribution is: "Transcript initially generated with Buzz/Whisper Large-v3 and later lightly corrected by Leonard Bogard with Codex/ChatGPT assistance."</p>
+      <p>When quoting or relying on the transcript, cite the tape side and timestamp, and preferably verify the quoted passage against the audio. A fair attribution is: "Transcript initially generated with Buzz/Whisper Large-v3 and later lightly corrected by alphathinktink with Codex/ChatGPT assistance."</p>
     </section>
 
     <section>
@@ -1390,7 +1390,7 @@ def main() -> None:
         "# Killdozer Tapes Archive\n\n"
         "Transcript provenance and authorship:\n"
         "- Initial transcription was generated with Buzz using Whisper Large-v3.\n"
-        "- Later editing was performed by Leonard Bogard with limited human ear-checking and Codex/ChatGPT-assisted cleanup.\n"
+        "- Later editing was performed by alphathinktink with limited human ear-checking and Codex/ChatGPT-assisted cleanup.\n"
         "- The transcripts are partially reviewed research aids, not fully human-certified verbatim transcripts.\n"
         "- See provenance.html, Codex_Change_Report_2026-07-13.txt, and Transcription_QA_Timestamp_Sample_Report.txt before treating the text as authoritative.\n\n"
         "This archive exposes synchronized audio transcripts in several forms:\n"

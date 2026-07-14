@@ -130,7 +130,7 @@ def page_template(title: str, description: str, body: str, source_md: str) -> st
         "name": f"Killdozer Tapes Analysis - {title}",
         "description": description,
         "isBasedOn": source_md,
-        "creator": "Codex/ChatGPT with Leonard Bogard",
+        "creator": "Codex/ChatGPT with alphathinktink",
         "about": "Generated analysis of the Killdozer tape transcripts; not a transcript or primary source.",
     }
     return f"""<!doctype html>
@@ -171,7 +171,7 @@ def index_page() -> str:
         "@type": "CollectionPage",
         "name": "Killdozer Tapes Analysis Reports",
         "description": "Separate Codex/ChatGPT-generated analysis reports based on the Killdozer tape transcripts.",
-        "creator": "Codex/ChatGPT with Leonard Bogard",
+        "creator": "Codex/ChatGPT with alphathinktink",
         "hasPart": [page["output"] for page in PAGES],
     }
     cards = "\n".join(
@@ -215,7 +215,7 @@ def index_page() -> str:
     <section>
       <h2>Use Note</h2>
       <p>Use these pages as interpretive aids only. When quoting or citing the tapes, return to the transcript pages and preferably verify against the audio. These reports summarize and organize Marvin's account; they do not independently validate the allegations described in that account.</p>
-      <p>Generation disclosure: the report Markdown and these web pages were generated with Codex/ChatGPT assistance at the request of Leonard Bogard.</p>
+      <p>Generation disclosure: the report Markdown and these web pages were generated with Codex/ChatGPT assistance at the request of alphathinktink.</p>
     </section>
   </main>
 </body>
