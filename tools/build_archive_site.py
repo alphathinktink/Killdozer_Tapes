@@ -148,6 +148,12 @@ def page_url(filename: str) -> str:
     return quote(filename, safe="/")
 
 
+def render_manifest_path(path: str) -> str:
+    if path.startswith("Not published"):
+        return f"<span class=\"unpublished-artifact\">{html.escape(path)}</span>"
+    return f"<a href=\"{page_url(path)}\">{html.escape(path)}</a>"
+
+
 def build_catalog() -> list[dict]:
     catalog = []
     for item in RECORDINGS:
@@ -155,6 +161,7 @@ def build_catalog() -> list[dict]:
         cues = parse_vtt(ROOT / item["vtt"])
         duration = max((cue["end"] for cue in cues), default=0)
         transcript_page = f"transcripts/{item['id']}.html"
+        wav_name = Path(item["audio"]).with_suffix(".wav").name
         data = {
             "id": item["id"],
             "label": item["label"],
@@ -177,12 +184,24 @@ def build_catalog() -> list[dict]:
             "wordCount": word_count(txt),
             "audioBytes": file_size(ROOT / item["audio"]),
             "transcriptBytes": file_size(ROOT / item["txt"]),
+            "wavTranscode": {
+                "filename": wav_name,
+                "directory": "wav-44.1khz-16bit/",
+                "published": False,
+                "note": "44.1 kHz / 16-bit WAV transcode generated for local waveform review; intentionally not published in the GitHub repository because of file size.",
+            },
             "plainText": txt,
             "cues": cues,
         }
         if "alternateAudio" in item:
             data["alternateAudio"] = item["alternateAudio"]
             data["alternateAudioUrl"] = page_url(item["alternateAudio"])
+            data["alternateWavTranscode"] = {
+                "filename": Path(item["alternateAudio"]).with_suffix(".wav").name,
+                "directory": "wav-44.1khz-16bit/",
+                "published": False,
+                "note": "Alternate 44.1 kHz / 16-bit WAV transcode generated for local waveform review; intentionally not published in the GitHub repository because of file size.",
+            }
         catalog.append(data)
     return catalog
 
@@ -337,7 +356,7 @@ def render_index(catalog: list[dict]) -> str:
 
     <section class="bot-index" aria-label="Transcript provenance summary">
       <h2>Transcript Provenance</h2>
-      <p>Initial transcript files were produced in Buzz using Whisper Large-v3. Later edits were made by Leonard Bogard with limited human ear-checking and Codex/ChatGPT-assisted review, cleanup, and report generation. Supporting files include original transcript backups, 44.1 kHz / 16-bit WAV transcodes, the Buzz conversion screenshot, QA notes, and the Codex change report.</p>
+      <p>Initial transcript files were produced in Buzz using Whisper Large-v3. Later edits were made by Leonard Bogard with limited human ear-checking and Codex/ChatGPT-assisted review, cleanup, and report generation. Supporting files include original transcript backups, locally generated 44.1 kHz / 16-bit WAV transcodes that are intentionally not published because of file size, the Buzz conversion screenshot, QA notes, and the Codex change report.</p>
       <p><a href="provenance.html">Read the full process and authorship notes</a>.</p>
     </section>
   </main>
@@ -367,12 +386,12 @@ def render_provenance_page(catalog: list[dict]) -> str:
         ("QA timestamp report", "Transcription_QA_Timestamp_Sample_Report.txt", "Timestamped list of suspected Whisper/Buzz transcript issues, resolved items, and sample positions."),
         ("Codex change report", "Codex_Change_Report_2026-07-13.txt", "Best-effort report of Codex-assisted replacements and review recommendations."),
         ("Original transcription backups", "Original Transcriptions Backup/", "Backup copies of earlier transcript files before later cleanup passes."),
-        ("44.1 kHz / 16-bit WAV transcodes", "wav-44.1khz-16bit/", "WAV transcodes retained for waveform review and sample-count referencing."),
+        ("44.1 kHz / 16-bit WAV transcodes", "Not published in repository", "WAV transcodes were generated for local waveform review and sample-count referencing, but are intentionally omitted from the public GitHub Pages repository because of file size."),
         ("Machine catalog", "data/catalog.json", "Machine-readable SPA catalog with transcript text, cue timing, and provenance metadata."),
         ("LLM guidance", "llms.txt", "Plain text guidance for AI assistants and scrapers."),
     ]
     manifest_rows = "\n".join(
-        f"<tr><td>{html.escape(label)}</td><td><a href=\"{page_url(path)}\">{html.escape(path)}</a></td><td>{html.escape(note)}</td></tr>"
+        f"<tr><td>{html.escape(label)}</td><td>{render_manifest_path(path)}</td><td>{html.escape(note)}</td></tr>"
         for label, path, note in file_manifest
     )
     json_ld = {
@@ -413,7 +432,7 @@ def render_provenance_page(catalog: list[dict]) -> str:
       <h2>Process Summary</h2>
       <ol>
         <li>Source MP3 recordings were gathered for seven tape sides. Tape 1 Side B also has a fast-forward-corrected audio file that is used as the primary web playback source.</li>
-        <li>Audio was transcoded to 44.1 kHz / 16-bit WAV files for waveform review and sample-count references. Those files are preserved in <a href="wav-44.1khz-16bit/">wav-44.1khz-16bit/</a>.</li>
+        <li>Audio was transcoded locally to 44.1 kHz / 16-bit WAV files for waveform review and sample-count references. Those generated WAV files are documented in the machine catalog but intentionally not published in this GitHub repository because of file size.</li>
         <li>Initial transcript outputs were generated with Buzz using Whisper Large-v3, producing TXT, SRT, and VTT transcript files.</li>
         <li>Original transcript copies were preserved in <a href="Original%20Transcriptions%20Backup/">Original Transcriptions Backup/</a> before later correction passes.</li>
         <li>A first QA pass identified obvious Whisper/Buzz failure modes, including prompt leaks, hallucinated text, mojibake/non-English garbage, duplicate captions, overrun after audio ended, and suspicious names or terms.</li>
@@ -557,7 +576,13 @@ const renderLinks = (item) => {
     ["SRT", item.srtUrl],
     ["MP3", item.audioUrl],
   ];
-  els.links.innerHTML = links.map(([label, href]) => `<a href="${href}">${label}</a>`).join("");
+  const wavLabel = item.alternateWavTranscode
+    ? `WAV not published (${item.wavTranscode.filename}; ${item.alternateWavTranscode.filename})`
+    : `WAV not published (${item.wavTranscode.filename})`;
+  els.links.innerHTML = [
+    ...links.map(([label, href]) => `<a href="${href}">${label}</a>`),
+    `<span class="unpublished-resource" title="${item.wavTranscode.note}">${wavLabel}</span>`,
+  ].join("");
 };
 
 const renderTranscript = (item) => {
@@ -916,6 +941,21 @@ h2 {
   text-decoration: none;
 }
 
+.unpublished-resource,
+.unpublished-artifact {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.unpublished-resource {
+  background: #f4f1ed;
+  border: 1px dashed #cfc6ba;
+  border-radius: 999px;
+  display: inline-flex;
+  font-weight: 800;
+  padding: 0.42rem 0.7rem;
+}
+
 .player-panel {
   background: #101317;
   padding: 1rem clamp(1rem, 3vw, 2rem);
@@ -1168,7 +1208,8 @@ th {
     columns: 1;
   }
 
-  .resource-row a {
+  .resource-row a,
+  .unpublished-resource {
     flex: 1 1 auto;
     text-align: center;
   }
@@ -1209,7 +1250,7 @@ def main() -> None:
         "- Machine catalog: data/catalog.json\n"
         "- Crawlable transcript pages: transcripts/*.html\n"
         "- Original transcript text/caption files: TXT, VTT, and SRT files in the archive root\n\n"
-        "Supporting evidence retained with the archive includes Original Transcriptions Backup/, wav-44.1khz-16bit/, Buzz conversion screenshot.png, and QA/change reports.\n"
+        "Supporting evidence retained with the archive includes Original Transcriptions Backup/, locally generated 44.1 kHz / 16-bit WAV transcodes that are intentionally not published because of file size, Buzz conversion screenshot.png, and QA/change reports.\n"
         "Prefer timestamped VTT/SRT cues when citing exact locations, and verify quotations against the audio when accuracy matters.\n",
         encoding="utf-8",
     )

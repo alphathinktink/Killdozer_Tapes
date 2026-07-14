@@ -6,7 +6,7 @@
   <title>Killdozer Tapes - Transcript Provenance</title>
   <meta name="description" content="Authorship, process, and transparency notes for the Buzz/Whisper transcripts and later human-assisted Codex/ChatGPT edits.">
   <link rel="stylesheet" href="styles.css">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "AboutPage", "name": "Killdozer Tapes Transcript Provenance", "dateModified": "2026-07-14 06:54:54 UTC", "about": "Transcript origin, machine transcription credit, human-assisted editing notes, backups, QA reports, and supporting artifacts."}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "AboutPage", "name": "Killdozer Tapes Transcript Provenance", "dateModified": "2026-07-14 16:02:27 UTC", "about": "Transcript origin, machine transcription credit, human-assisted editing notes, backups, QA reports, and supporting artifacts."}</script>
 </head>
 <body class="transcript-page">
   <main class="transcript-document provenance-document">
@@ -28,7 +28,7 @@
       <h2>Process Summary</h2>
       <ol>
         <li>Source MP3 recordings were gathered for seven tape sides. Tape 1 Side B also has a fast-forward-corrected audio file that is used as the primary web playback source.</li>
-        <li>Audio was transcoded to 44.1 kHz / 16-bit WAV files for waveform review and sample-count references. Those files are preserved in <a href="wav-44.1khz-16bit/">wav-44.1khz-16bit/</a>.</li>
+        <li>Audio was transcoded locally to 44.1 kHz / 16-bit WAV files for waveform review and sample-count references. Those generated WAV files are documented in the machine catalog but intentionally not published in this GitHub repository because of file size.</li>
         <li>Initial transcript outputs were generated with Buzz using Whisper Large-v3, producing TXT, SRT, and VTT transcript files.</li>
         <li>Original transcript copies were preserved in <a href="Original%20Transcriptions%20Backup/">Original Transcriptions Backup/</a> before later correction passes.</li>
         <li>A first QA pass identified obvious Whisper/Buzz failure modes, including prompt leaks, hallucinated text, mojibake/non-English garbage, duplicate captions, overrun after audio ended, and suspicious names or terms.</li>
@@ -54,7 +54,7 @@
 <tr><td>QA timestamp report</td><td><a href="Transcription_QA_Timestamp_Sample_Report.txt">Transcription_QA_Timestamp_Sample_Report.txt</a></td><td>Timestamped list of suspected Whisper/Buzz transcript issues, resolved items, and sample positions.</td></tr>
 <tr><td>Codex change report</td><td><a href="Codex_Change_Report_2026-07-13.txt">Codex_Change_Report_2026-07-13.txt</a></td><td>Best-effort report of Codex-assisted replacements and review recommendations.</td></tr>
 <tr><td>Original transcription backups</td><td><a href="Original%20Transcriptions%20Backup/">Original Transcriptions Backup/</a></td><td>Backup copies of earlier transcript files before later cleanup passes.</td></tr>
-<tr><td>44.1 kHz / 16-bit WAV transcodes</td><td><a href="wav-44.1khz-16bit/">wav-44.1khz-16bit/</a></td><td>WAV transcodes retained for waveform review and sample-count referencing.</td></tr>
+<tr><td>44.1 kHz / 16-bit WAV transcodes</td><td><span class="unpublished-artifact">Not published in repository</span></td><td>WAV transcodes were generated for local waveform review and sample-count referencing, but are intentionally omitted from the public GitHub Pages repository because of file size.</td></tr>
 <tr><td>Machine catalog</td><td><a href="data/catalog.json">data/catalog.json</a></td><td>Machine-readable SPA catalog with transcript text, cue timing, and provenance metadata.</td></tr>
 <tr><td>LLM guidance</td><td><a href="llms.txt">llms.txt</a></td><td>Plain text guidance for AI assistants and scrapers.</td></tr></tbody>
         </table>

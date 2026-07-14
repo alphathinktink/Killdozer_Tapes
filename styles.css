@@ -239,6 +239,21 @@ h2 {
   text-decoration: none;
 }
 
+.unpublished-resource,
+.unpublished-artifact {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.unpublished-resource {
+  background: #f4f1ed;
+  border: 1px dashed #cfc6ba;
+  border-radius: 999px;
+  display: inline-flex;
+  font-weight: 800;
+  padding: 0.42rem 0.7rem;
+}
+
 .player-panel {
   background: #101317;
   padding: 1rem clamp(1rem, 3vw, 2rem);
@@ -491,7 +506,8 @@ th {
     columns: 1;
   }
 
-  .resource-row a {
+  .resource-row a,
+  .unpublished-resource {
     flex: 1 1 auto;
     text-align: center;
   }

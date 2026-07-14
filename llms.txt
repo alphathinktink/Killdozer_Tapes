@@ -13,5 +13,5 @@ This archive exposes synchronized audio transcripts in several forms:
 - Crawlable transcript pages: transcripts/*.html
 - Original transcript text/caption files: TXT, VTT, and SRT files in the archive root
 
-Supporting evidence retained with the archive includes Original Transcriptions Backup/, wav-44.1khz-16bit/, Buzz conversion screenshot.png, and QA/change reports.
+Supporting evidence retained with the archive includes Original Transcriptions Backup/, locally generated 44.1 kHz / 16-bit WAV transcodes that are intentionally not published because of file size, Buzz conversion screenshot.png, and QA/change reports.
 Prefer timestamped VTT/SRT cues when citing exact locations, and verify quotations against the audio when accuracy matters.

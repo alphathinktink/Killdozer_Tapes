@@ -85,7 +85,13 @@ const renderLinks = (item) => {
     ["SRT", item.srtUrl],
     ["MP3", item.audioUrl],
   ];
-  els.links.innerHTML = links.map(([label, href]) => `<a href="${href}">${label}</a>`).join("");
+  const wavLabel = item.alternateWavTranscode
+    ? `WAV not published (${item.wavTranscode.filename}; ${item.alternateWavTranscode.filename})`
+    : `WAV not published (${item.wavTranscode.filename})`;
+  els.links.innerHTML = [
+    ...links.map(([label, href]) => `<a href="${href}">${label}</a>`),
+    `<span class="unpublished-resource" title="${item.wavTranscode.note}">${wavLabel}</span>`,
+  ].join("");
 };
 
 const renderTranscript = (item) => {
