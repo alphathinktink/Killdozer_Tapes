@@ -232,6 +232,7 @@ def render_transcript_page(item: dict) -> str:
   <title>Killdozer Tapes - {html.escape(item["label"])} Transcript</title>
   <meta name="description" content="Plain, crawlable transcript and source audio links for {html.escape(item["label"])}.">
   <link rel="canonical" href="../{item["transcriptPageUrl"]}">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css">
   <script type="application/ld+json">{json_ld_text}</script>
 </head>
@@ -287,6 +288,7 @@ def render_index(catalog: list[dict]) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Killdozer Tapes Archive</title>
   <meta name="description" content="A searchable audio and transcript archive with synchronized playback, plain transcript pages, and direct text downloads.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">{json_ld_text}</script>
 </head>
@@ -301,6 +303,7 @@ def render_index(catalog: list[dict]) -> str:
         <p class="mast-copy provenance-callout"><strong>Transcript provenance:</strong> generated initially with Buzz/Whisper Large-v3, then edited through limited human review with Codex/ChatGPT assistance. The transcripts are useful research aids, not fully human-certified verbatim records.</p>
         <div class="resource-row mast-links">
           <a href="provenance.html">Process and authorship</a>
+          <a href="analysis/index.html">Separate analysis reports</a>
           <a href="Codex_Change_Report_2026-07-13.txt">Codex change report</a>
           <a href="Transcription_QA_Timestamp_Sample_Report.txt">QA timestamp report</a>
         </div>
@@ -360,6 +363,19 @@ def render_index(catalog: list[dict]) -> str:
       <p>Initial transcript files were produced in Buzz using Whisper Large-v3. Later edits were made by Leonard Bogard with limited human ear-checking and Codex/ChatGPT-assisted review, cleanup, and report generation. Supporting files include original transcript backups, locally generated 44.1 kHz / 16-bit WAV transcodes that are intentionally not published because of file size, the Buzz conversion screenshot, QA notes, and the Codex change report.</p>
       <p><a href="provenance.html">Read the full process and authorship notes</a>.</p>
     </section>
+
+    <section class="bot-index analysis-entry" aria-label="Separate analysis reports">
+      <p class="eyebrow">Separate generated report section</p>
+      <h2>Analysis Reports</h2>
+      <p><strong>These pages are not transcripts and are not part of the core transcript archive.</strong> They are Codex/ChatGPT-generated analysis reports derived from the tape transcripts. The timeline intentionally steel-mans Marvin Heemeyer's grievance narrative where the transcripts leave ordering ambiguity, while still avoiding claims he does not make.</p>
+      <p>Use the reports as interpretive aids only; quote and cite the transcript pages or audio for primary-source work.</p>
+      <div class="resource-row">
+        <a href="analysis/index.html">Analysis index</a>
+        <a href="analysis/timeline.html">Steel-manned timeline</a>
+        <a href="analysis/grievances.html">Grievance map</a>
+        <a href="analysis/persons-entities.html">Persons and entities</a>
+      </div>
+    </section>
   </main>
   <noscript>
     <main class="transcript-document">
@@ -368,6 +384,7 @@ def render_index(catalog: list[dict]) -> str:
       <ul>
 {links}
       </ul>
+      <p>Separate Codex/ChatGPT-generated analysis reports are available at <a href="analysis/index.html">analysis/index.html</a>. They are not transcripts or primary-source material.</p>
     </main>
   </noscript>
   <script src="app.js" defer></script>
@@ -410,6 +427,7 @@ def render_provenance_page(catalog: list[dict]) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Killdozer Tapes - Transcript Provenance</title>
   <meta name="description" content="Authorship, process, and transparency notes for the Buzz/Whisper transcripts and later human-assisted Codex/ChatGPT edits.">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">{json_ld_text}</script>
 </head>
@@ -521,6 +539,7 @@ def render_backup_index(catalog: list[dict]) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Killdozer Tapes - Original Transcription Backups</title>
   <meta name="description" content="Index of original TXT, VTT, and SRT transcript backup files preserved before later correction passes.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css">
   <script type="application/ld+json">{json_ld_text}</script>
 </head>
@@ -1165,6 +1184,52 @@ mark {
   padding: 0.9rem 1rem;
 }
 
+.analysis-entry {
+  background: #fffdf8;
+}
+
+.analysis-warning {
+  background: #fff8df;
+  border: 1px solid #d8a63a;
+  border-left: 5px solid var(--accent-2);
+  border-radius: 7px;
+  margin: 1rem 0 1.25rem;
+  padding: 0.95rem 1rem;
+}
+
+.analysis-nav {
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+.analysis-card-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.analysis-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 1rem;
+}
+
+.analysis-card h2 {
+  font-size: 1.15rem;
+}
+
+.analysis-document h1 {
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  margin-bottom: 1rem;
+}
+
+.analysis-document h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.45rem;
+}
+
 .crawler-transcript p {
   margin: 0;
   padding: 0.55rem 0;
@@ -1256,6 +1321,10 @@ th {
   .recording-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .analysis-card-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 620px) {
@@ -1295,7 +1364,16 @@ def main() -> None:
     (ROOT / "styles.css").write_text(render_css(), encoding="utf-8")
     for item in catalog:
         (TRANSCRIPT_DIR / f"{item['id']}.html").write_text(render_transcript_page(item), encoding="utf-8")
-    sitemap_entries = ["index.html", "provenance.html", "Original Transcriptions Backup/index.html", *[item["transcriptPage"] for item in catalog]]
+    sitemap_entries = [
+        "index.html",
+        "provenance.html",
+        "analysis/index.html",
+        "analysis/timeline.html",
+        "analysis/grievances.html",
+        "analysis/persons-entities.html",
+        "Original Transcriptions Backup/index.html",
+        *[item["transcriptPage"] for item in catalog],
+    ]
     (ROOT / "sitemap.xml").write_text(
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
         "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n"
@@ -1314,9 +1392,11 @@ def main() -> None:
         "This archive exposes synchronized audio transcripts in several forms:\n"
         "- Human SPA: index.html\n"
         "- Process and authorship notes: provenance.html\n"
+        "- Separate generated analysis reports: analysis/index.html\n"
         "- Machine catalog: data/catalog.json\n"
         "- Crawlable transcript pages: transcripts/*.html\n"
         "- Original transcript text/caption files: TXT, VTT, and SRT files in the archive root\n\n"
+        "Analysis reports under analysis/ are Codex/ChatGPT-generated interpretive aids, not transcripts, not primary sources, and not part of the archive's core transcript corpus. The timeline intentionally steel-mans Marvin Heemeyer's grievance narrative where the transcripts leave ordering ambiguity.\n\n"
         "Supporting evidence retained with the archive includes Original Transcriptions Backup/, locally generated 44.1 kHz / 16-bit WAV transcodes that are intentionally not published because of file size, Buzz conversion screenshot.png, and QA/change reports.\n"
         "Prefer timestamped VTT/SRT cues when citing exact locations, and verify quotations against the audio when accuracy matters.\n",
         encoding="utf-8",

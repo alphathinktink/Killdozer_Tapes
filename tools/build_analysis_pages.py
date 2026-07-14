@@ -140,6 +140,7 @@ def page_template(title: str, description: str, body: str, source_md: str) -> st
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Killdozer Tapes Analysis - {html.escape(title)}</title>
   <meta name="description" content="{html.escape(description)}">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css">
   <script type="application/ld+json">{html.escape(json.dumps(json_ld, ensure_ascii=False), quote=False)}</script>
 </head>
@@ -188,6 +189,7 @@ def index_page() -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Killdozer Tapes - Analysis Reports</title>
   <meta name="description" content="Separate Codex/ChatGPT-generated analysis reports based on the Killdozer tape transcripts.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="../styles.css">
   <script type="application/ld+json">{html.escape(json.dumps(json_ld, ensure_ascii=False), quote=False)}</script>
 </head>
