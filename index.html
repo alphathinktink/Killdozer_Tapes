@@ -36,11 +36,13 @@
 
     <section class="workbench" aria-label="Archive player and transcript">
       <aside class="rail">
-        <div class="search-box">
-          <label for="search">Search transcripts</label>
-          <input id="search" type="search" autocomplete="off" placeholder="Search names, places, phrases">
+        <div class="rail-content">
+          <div class="search-box">
+            <label for="search">Search transcripts</label>
+            <input id="search" type="search" autocomplete="off" placeholder="Search names, places, phrases">
+          </div>
+          <div id="recording-list" class="recording-list" aria-label="Recordings"></div>
         </div>
-        <div id="recording-list" class="recording-list" aria-label="Recordings"></div>
       </aside>
 
       <section class="reader">
@@ -53,16 +55,18 @@
           <div class="resource-row" id="resource-links"></div>
         </header>
 
-        <div class="player-panel">
-          <audio id="player" controls preload="metadata"></audio>
-          <div class="progress-line" aria-hidden="true"><span id="progress-fill"></span></div>
-        </div>
+        <div class="playback-bar" id="playback-bar">
+          <div class="player-panel">
+            <audio id="player" controls preload="metadata"></audio>
+            <div class="progress-line" aria-hidden="true"><span id="progress-fill"></span></div>
+          </div>
 
-        <div class="toolbar" aria-label="Transcript tools">
-          <button id="jump-back" class="icon-button" title="Back 15 seconds" aria-label="Back 15 seconds">−15</button>
-          <button id="jump-forward" class="icon-button" title="Forward 15 seconds" aria-label="Forward 15 seconds">+15</button>
-          <button id="toggle-follow" class="tool-toggle" type="button" aria-pressed="true">Follow audio</button>
-          <span id="match-count" class="muted"></span>
+          <div class="toolbar" role="group" aria-label="Transcript tools">
+            <button id="jump-back" class="icon-button" title="Back 15 seconds" aria-label="Back 15 seconds">−15</button>
+            <button id="jump-forward" class="icon-button" title="Forward 15 seconds" aria-label="Forward 15 seconds">+15</button>
+            <button id="toggle-follow" class="tool-toggle" type="button">Pause follow</button>
+            <span id="match-count" class="muted"></span>
+          </div>
         </div>
 
         <article id="transcript" class="transcript" aria-live="polite"></article>

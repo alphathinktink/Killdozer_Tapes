@@ -9,7 +9,9 @@ const els = {
   app: document.querySelector("#app"),
   list: document.querySelector("#recording-list"),
   search: document.querySelector("#search"),
+  reader: document.querySelector(".reader"),
   player: document.querySelector("#player"),
+  playbackBar: document.querySelector("#playback-bar"),
   title: document.querySelector("#active-title"),
   kicker: document.querySelector("#active-kicker"),
   summary: document.querySelector("#active-summary"),
@@ -59,6 +61,7 @@ const activeItem = () => state.catalog.find((item) => item.id === state.activeId
 const setActive = (id, time = 0) => {
   const item = state.catalog.find((entry) => entry.id === id) || state.catalog[0];
   if (!item) return;
+  returnToReaderStart();
   state.activeId = item.id;
   location.hash = item.id + (time ? `?t=${time}` : "");
   render();
@@ -113,7 +116,7 @@ const renderTranscript = (item) => {
 };
 
 const renderPlayer = (item) => {
-  const current = decodeURIComponent(els.player.getAttribute("data-src") || "");
+  const current = els.player.getAttribute("data-src");
   if (current === item.audioUrl) return;
   els.player.innerHTML = `<source src="${item.audioUrl}" type="audio/mpeg"><track kind="captions" src="${item.vttUrl}" srclang="en" label="English transcript" default>`;
   els.player.setAttribute("data-src", item.audioUrl);
@@ -141,7 +144,45 @@ const render = () => {
   els.app.dataset.ready = "true";
 };
 
-const syncActiveCue = () => {
+const setFollow = (follow) => {
+  state.follow = follow;
+  els.follow.textContent = follow ? "Pause follow" : "Resume follow";
+  els.follow.classList.toggle("follow-paused", !follow);
+};
+
+let lastPageScroll = window.scrollY;
+
+const scrollPageTo = (top) => {
+  // Instant scrolling leaves no animation competing with the reader's next scroll.
+  window.scrollTo({ top, behavior: "instant" });
+  lastPageScroll = window.scrollY;
+};
+
+const returnToReaderStart = () => {
+  const readerTop = els.reader.getBoundingClientRect().top;
+  if (readerTop < 0) scrollPageTo(window.scrollY + readerTop);
+};
+
+const trackPageScroll = () => {
+  // Scroll events arrive after scrollPageTo has recorded its new position.
+  if (window.scrollY === lastPageScroll) return;
+  lastPageScroll = window.scrollY;
+  if (state.follow && !els.player.paused) setFollow(false);
+};
+
+const scrollToCue = (cue) => {
+  const bar = els.playbackBar.getBoundingClientRect();
+  const bounds = cue.getBoundingClientRect();
+  const viewportHeight = document.documentElement.clientHeight;
+  const visibleTop = Math.max(0, Math.min(bar.bottom, bar.height));
+  const visibleCueHeight = Math.min(bounds.height, viewportHeight - visibleTop);
+  if (bounds.top >= visibleTop && bounds.top + visibleCueHeight <= viewportHeight) return;
+
+  const centeredTop = Math.max(bar.height, (viewportHeight + bar.height - bounds.height) / 2);
+  scrollPageTo(window.scrollY + bounds.top - centeredTop);
+};
+
+const syncActiveCue = (recenter = false) => {
   const item = activeItem();
   if (!item || !els.player.duration) return;
   els.progress.style.width = `${Math.min(100, (els.player.currentTime / els.player.duration) * 100)}%`;
@@ -151,8 +192,10 @@ const syncActiveCue = () => {
     const end = Number(cue.dataset.end);
     return els.player.currentTime >= start && els.player.currentTime <= end;
   });
+  const cueChanged = active && !active.classList.contains("active");
   cues.forEach((cue) => cue.classList.toggle("active", cue === active));
-  if (active && state.follow) active.scrollIntoView({ block: "center", behavior: "smooth" });
+  trackPageScroll();
+  if (active && state.follow && (cueChanged || recenter)) scrollToCue(active);
 };
 
 const boot = async () => {
@@ -178,13 +221,17 @@ els.transcript.addEventListener("click", (event) => {
 
 els.search.addEventListener("input", () => {
   state.query = els.search.value;
+  if (state.follow && !els.player.paused) setFollow(false);
+  returnToReaderStart();
   render();
 });
 
 els.follow.addEventListener("click", () => {
-  state.follow = !state.follow;
-  els.follow.setAttribute("aria-pressed", String(state.follow));
-  els.follow.textContent = state.follow ? "Follow audio" : "Free scroll";
+  setFollow(!state.follow);
+  if (state.follow) {
+    lastPageScroll = window.scrollY;
+    syncActiveCue(true);
+  }
 });
 
 els.back.addEventListener("click", () => {
@@ -195,7 +242,9 @@ els.forward.addEventListener("click", () => {
   els.player.currentTime = Math.min(els.player.duration || Infinity, els.player.currentTime + 15);
 });
 
-els.player.addEventListener("timeupdate", syncActiveCue);
+els.player.addEventListener("timeupdate", () => syncActiveCue());
+els.player.addEventListener("play", () => syncActiveCue(true));
+window.addEventListener("scroll", trackPageScroll, { passive: true });
 window.addEventListener("hashchange", () => {
   const id = cleanHash();
   if (id && id !== state.activeId) setActive(id, getHashTime());
